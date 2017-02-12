@@ -1,10 +1,9 @@
 package coinpurse;
-//TODO fix this Javadoc. It should be written as a COMPLETE SENTENCE WITH PERIOD.
 /**
  * a coin with a monetary value and currency.
- * @author
+ * @author Charin Tantrakul
  */
-//TODO declare that Coin implements Comparable<Coin>
+
 public class Coin implements Comparable<Coin>{
 	public static final String DEFAULT_CURRENCY = "Baht";
     /** Value of the coin. */
@@ -30,18 +29,28 @@ public class Coin implements Comparable<Coin>{
     	this.value=value;
     	this.currency = currency;
     }
-
-//TODO Write a getValue() method and javadoc.
+    
+    /**
+     * Get value of coin.
+     * @return values as double.
+     */
     public double getValue( ) { 
     	return this.value;
     } 
-    
-//TODO Write a getCurrency() method and javadoc.
+
+    /**
+     * Get currency of coin.
+     * @return currency of coin.
+     */
     public String getCurrency() {
     	return this.currency;
     }
     
-//TODO Write an equals(Object) method.
+    /**
+     * Compare coins and other coin
+     * @param obj is other coin that user input to compare
+     * @return true if other equal with that's coin. 
+     */
     public boolean equals(Object obj) {
     	if(obj==null)return false;
     	if(this.getClass()!=obj.getClass())return false;
@@ -50,21 +59,27 @@ public class Coin implements Comparable<Coin>{
     	return false;
     }
     
-//TODO Write a compareTo method and implement Comparable.
+    /**
+     * Compare this coin and other coin.
+     * Which coin that have  least  value will come first.
+     * @return 1 if this coin greater. -1 if this coin less than. and 0 if two coins are equal.  
+     */
     public int compareTo(Coin c){
     	if(c==null)return -1;
     	if(this.value<c.getValue())return -1;
     	else if(this.value==c.getValue())return 0;
-    	else return 1;
+    	else return 1; 
     }
     
-//TODO write a toString() method. See labsheet for what to return.
+    /**
+     * Get teh informations of this coin.
+     */
     public String toString() { 
     	return this.value+"-"+this.currency;
     }
     
-//TODO Write good Javadoc comments on all methods.
+
     
 }
-//TODO remove the TODO comments after you complete them! Including this one!
+
 
