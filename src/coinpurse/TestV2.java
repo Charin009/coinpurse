@@ -1,6 +1,11 @@
 package coinpurse;
 import java.util.ArrayList;
 import java.util.Collections;
+/**
+*This class is my fault this class don't use .I creat it to test my code.
+*
+*@author Charin Tantrakul.
+*/
 public class TestV2 {
  public static void main(String[]arg){
 	 Purse purse = new Purse( 3 );

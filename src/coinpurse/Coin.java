@@ -4,7 +4,7 @@ package coinpurse;
  * @author Charin Tantrakul
  */
 
-public class Coin implements Comparable<Coin>{
+public class Coin implements Valuable{
 	public static final String DEFAULT_CURRENCY = "Baht";
     /** Value of the coin. */
     private final double value;
@@ -64,7 +64,7 @@ public class Coin implements Comparable<Coin>{
      * Which coin that have  least  value will come first.
      * @return 1 if this coin greater. -1 if this coin less than. and 0 if two coins are equal.  
      */
-    public int compareTo(Coin c){
+    public int compareTo(Valuable c){
     	if(c==null)return -1;
     	if(this.value<c.getValue())return -1;
     	else if(this.value==c.getValue())return 0;
