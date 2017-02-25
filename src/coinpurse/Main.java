@@ -12,7 +12,7 @@ public class Main {
      */
     public static void main( String[] args ) {
     	Purse purse = new Purse(30);
-    	ConsoleDialog console = new ConsoleDialog(purse);
+    	ConsoleDialog console = new ConsoleDialog(purse,"malaysia");
     	console.run();
     }
 }

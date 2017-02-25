@@ -12,10 +12,11 @@ import java.util.Scanner;
  */
 public class ConsoleDialog {
 	// default currency for this dialog
-	public static final String CURRENCY = "Baht";
+	public static String CURRENCY = "Baht";
 	// use a single java.util.Scanner object for reading all input
 	private static Scanner console = new Scanner( System.in );
 	private Purse purse;
+	private static MoneyFactory factory;
 
 	/** 
 	 * Initialize a new Purse dialog.
@@ -23,6 +24,22 @@ public class ConsoleDialog {
 	 */
 	public ConsoleDialog(Purse purse) {
 		this.purse=purse;
+	}
+
+	/**
+	 * Initialize a new Purse dialog and set currency of money by country
+	 * @param purse is the Purse to interact with
+	 * @param country is name of country that you want to use(contain only Thailand and Malaysia)
+	 */
+	public ConsoleDialog(Purse purse,String country){
+		this.purse = purse;
+		if(country.equalsIgnoreCase("Thailand")){
+			CURRENCY = "Baht";
+		}
+		else if (country.equalsIgnoreCase("Malaysia")){
+			CURRENCY = "Ringgit";
+		}
+		factory.setMoneyfactory(country);
 	}
 
 	/** run the user interface */
@@ -55,18 +72,12 @@ public class ConsoleDialog {
 		Scanner scanline = new Scanner(inline);
 		while( scanline.hasNextDouble() ) {
 			double value = scanline.nextDouble();
-			if(value<20){
-			Valuable coin = new Coin(value);
-			System.out.printf("Deposit %s... ", coin.toString() );
-			boolean ok = purse.insert(coin);
+
+			Valuable money = factory.getInstance().createMoney(value);
+			System.out.printf("Deposit %s... ", money );
+			boolean ok = purse.insert(money);
 			System.out.println( (ok? "ok" : "FAILED") );
-			}
-			else{
-				Valuable bankNote = new BankNote(value);
-				System.out.printf("Deposit %s... ", bankNote.toString() );
-				boolean ok = purse.insert(bankNote);
-				System.out.println( (ok? "ok" : "FAILED") );
-				}
+
 		}
 		if ( scanline.hasNext() )
 			System.out.println("Invalid input: "+scanline.next() );
